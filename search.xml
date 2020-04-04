@@ -1,6 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Elasticsearch的使用</title>
+    <url>/2020/04/04/note3/</url>
+    <content><![CDATA[<h2 id="用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？"><a href="#用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？" class="headerlink" title="用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？"></a>用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？</h2><p>在使用数据库搜索时，我们更多的是基于精确匹配的搜索，并不支持相关性匹配，与精确匹配相比，相关性匹配更贴近人的思维方式，而Elasticsearch支持相关性匹配。<br>搜索引擎不只是搜索，还有分析，分析数据的能力，是建立在快速的查询上的，而Elasticsearch之所以能够快速查询，是因为Elasticsearch基于倒排索引，对于文档搜索来说，倒排索引在性能和空间上都有更加明显的优势。Elastic的优势还有：支持中文分词插件。</p>
+<a id="more"></a>
+<p>注：Elasticsearch存储数据的方式是文档存储，把对象原原本本地放进去，取出时直接取出。</p>
+<h2 id="在Linux上使用docker安装Elasticsearch"><a href="#在Linux上使用docker安装Elasticsearch" class="headerlink" title="在Linux上使用docker安装Elasticsearch"></a>在Linux上使用docker安装Elasticsearch</h2><h3 id="1、安装Docker"><a href="#1、安装Docker" class="headerlink" title="1、安装Docker"></a>1、安装Docker</h3><p>Docker要求CentOS系统的内核版本高于3.10.<br>查看你当前的内核版本</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
+<p>若内核版本较低，可升级内核</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo yum update</span><br></pre></td></tr></table></figure>
+<p>安装Docker</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum install docker</span><br></pre></td></tr></table></figure>
+<p>设置Docker为开机启动</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+<p>启动Docker</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、在Docker上部署Elasticsearch"><a href="#2、在Docker上部署Elasticsearch" class="headerlink" title="2、在Docker上部署Elasticsearch"></a>2、在Docker上部署Elasticsearch</h3><h4 id="2-1、安装Elasticsearch"><a href="#2-1、安装Elasticsearch" class="headerlink" title="2.1、安装Elasticsearch"></a>2.1、安装Elasticsearch</h4><p>下载Elasticsearch镜像</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull elasticsearch</span><br></pre></td></tr></table></figure>
+<p>查看镜像</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+<p>运行Elasticsearch镜像</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run -e ES_JAVA_OPTS&#x3D;&quot;-Xms256m -Xmx256m&quot; -d -p 9200:9200 -p 9300:9300 --name containerName imageId</span><br></pre></td></tr></table></figure>
+<p>查看正在运行的容器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>在浏览器中打开http://服务器IP地址:9200,如果看到以下信息则说明安装成功</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span> : <span class="string">"530dd7820315"</span>,</span><br><span class="line">  <span class="attr">"cluster_name"</span> : <span class="string">"docker-cluster"</span>,</span><br><span class="line">  <span class="attr">"cluster_uuid"</span> : <span class="string">"7O0fjpBJTkmn_axwmZX0RQ"</span>,</span><br><span class="line">  <span class="attr">"version"</span> : &#123;</span><br><span class="line">    <span class="attr">"number"</span> : <span class="string">"7.2.0"</span>,</span><br><span class="line">    <span class="attr">"build_flavor"</span> : <span class="string">"default"</span>,</span><br><span class="line">    <span class="attr">"build_type"</span> : <span class="string">"docker"</span>,</span><br><span class="line">    <span class="attr">"build_hash"</span> : <span class="string">"508c38a"</span>,</span><br><span class="line">    <span class="attr">"build_date"</span> : <span class="string">"2019-06-20T15:54:18.811730Z"</span>,</span><br><span class="line">    <span class="attr">"build_snapshot"</span> : <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"lucene_version"</span> : <span class="string">"8.0.0"</span>,</span><br><span class="line">    <span class="attr">"minimum_wire_compatibility_version"</span> : <span class="string">"6.8.0"</span>,</span><br><span class="line">    <span class="attr">"minimum_index_compatibility_version"</span> : <span class="string">"6.0.0-beta1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"tagline"</span> : <span class="string">"You Know, for Search"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-2、修改配置，解决跨域访问问题"><a href="#2-2、修改配置，解决跨域访问问题" class="headerlink" title="2.2、修改配置，解决跨域访问问题"></a>2.2、修改配置，解决跨域访问问题</h4><p>首先进入到容器中，然后进入到指定目录修改elasticsearch.yml文件。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker exec -it elasticsearch &#x2F;bin&#x2F;bash</span><br><span class="line">cd &#x2F;usr&#x2F;share&#x2F;elasticsearch&#x2F;config&#x2F;</span><br><span class="line">vi elasticsearch.yml</span><br></pre></td></tr></table></figure>
+<p>在elasticsearch.yml的文件末尾加上</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">http.cors.enabled: true</span><br><span class="line">http.cors.allow-origin: &quot;*&quot;</span><br></pre></td></tr></table></figure>
+<p>修改配置后重启容器即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-3、安装ik分词器"><a href="#2-3、安装ik分词器" class="headerlink" title="2.3、安装ik分词器"></a>2.3、安装ik分词器</h4><p>es自带的分词器对中文分词不是很友好，所以我们下载开源的IK分词器来解决这个问题。首先进入到plugins目录中下载分词器，下载完成后然后解压，在重启es即可</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;share&#x2F;elasticsearch&#x2F;plugins&#x2F;</span><br><span class="line">elasticsearch-plugin install https:&#x2F;&#x2F;github.com&#x2F;medcl&#x2F;elasticsearch-analysis-ik&#x2F;releases&#x2F;download&#x2F;v7.2.0&#x2F;elasticsearch-analysis-ik-7.2.0.zip</span><br><span class="line">exit</span><br><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
+<p>注意：elasticsearch的版本和ik分词器的版本需要保持一致，不然在重启时会失败。可以在这查看所有版本，选择适合自己版本的右键复制链接地址即可。点击这里[<a href="https://github.com/medcl/elasticsearch-analysis-ik/releases]" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases]</a></p>
+<h3 id="3、用Docker安装kibana"><a href="#3、用Docker安装kibana" class="headerlink" title="3、用Docker安装kibana"></a>3、用Docker安装kibana</h3><p>安装kibana</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull kibana</span><br></pre></td></tr></table></figure>
+<p>启动kibana</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker run --name kibana --link&#x3D;elasticsearch:test  -p 5601:5601 -d kibana:7.2.0</span><br><span class="line">docker start kibana</span><br></pre></td></tr></table></figure>
+<p>启动之后可以打开浏览器输入http://服务器IP地址:5601可以打开kibana的界面。</p>
+]]></content>
+      <tags>
+        <tag>Elasricsearch</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>API文档生成工具Swagger2的使用</title>
     <url>/2020/04/03/note2/</url>
     <content><![CDATA[<p>在前后端分离的开发模式下，前后端系统通过接口进行交互，API接口文档变成了前后端开发人员联系的纽带，变得越来越重要，因此许多的API接口文档自动生成工具开始进入我们的视野。Swagger2是一个规范和完整的框架，用于生成、描述、调用和可视化RESTful风格的Web服务。它能够实时同步api与文档，但它的代码侵入性比较强，会影响正常代码阅读。</p>
