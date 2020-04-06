@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>vue中的数据双向绑定</title>
+    <url>/2020/04/06/note4/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>什么是双向数据绑定？<br>当数据发生变化时，视图也会随之发生变化，当视图发生变化时，数据也会随着视图同步变化。数据双向绑定时对于UI控件来说的，非UI控件不会涉及到数据双向绑定。</p>
+<a id="more"></a>
+<p>全局性数据流使用单向，方便跟踪；局部性数据流使用双向，简单易操作。</p>
+<h2 id="实现数据双向绑定"><a href="#实现数据双向绑定" class="headerlink" title="实现数据双向绑定"></a>实现数据双向绑定</h2><p>Vue提供了v-model指令实现数据双向绑定功能</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./lib/vue-2.4.0.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--v-bind只能实现数据的单项绑定，从M自动绑定到V，无法实现数据的双向绑定--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    &lt;input type="text" v-bind:value="msg" style="width:100%"&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">style</span>=<span class="string">"width:100%"</span> <span class="attr">v-model</span>=<span class="string">"msg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//创建Vue实例，得到ViewModel</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> vm=<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            msg: <span class="string">'helloworld'</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，v-model只能应用在表单元素中</p>
+]]></content>
+      <tags>
+        <tag>Vue</tag>
+        <tag>mvvm</tag>
+        <tag>数据绑定</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Elasticsearch的使用</title>
     <url>/2020/04/04/note3/</url>
     <content><![CDATA[<h2 id="用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？"><a href="#用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？" class="headerlink" title="用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？"></a>用数据库可以实现搜索功能，为什么还需要Elasticsearch呢？</h2><p>在使用数据库搜索时，我们更多的是基于精确匹配的搜索，并不支持相关性匹配，与精确匹配相比，相关性匹配更贴近人的思维方式，而Elasticsearch支持相关性匹配。<br>搜索引擎不只是搜索，还有分析，分析数据的能力，是建立在快速的查询上的，而Elasticsearch之所以能够快速查询，是因为Elasticsearch基于倒排索引，对于文档搜索来说，倒排索引在性能和空间上都有更加明显的优势。Elastic的优势还有：支持中文分词插件。</p>
@@ -37,7 +53,7 @@
 
 <h4 id="2-3、安装ik分词器"><a href="#2-3、安装ik分词器" class="headerlink" title="2.3、安装ik分词器"></a>2.3、安装ik分词器</h4><p>es自带的分词器对中文分词不是很友好，所以我们下载开源的IK分词器来解决这个问题。首先进入到plugins目录中下载分词器，下载完成后然后解压，在重启es即可</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd &#x2F;usr&#x2F;share&#x2F;elasticsearch&#x2F;plugins&#x2F;</span><br><span class="line">elasticsearch-plugin install https:&#x2F;&#x2F;github.com&#x2F;medcl&#x2F;elasticsearch-analysis-ik&#x2F;releases&#x2F;download&#x2F;v7.2.0&#x2F;elasticsearch-analysis-ik-7.2.0.zip</span><br><span class="line">exit</span><br><span class="line">docker restart elasticsearch</span><br></pre></td></tr></table></figure>
-<p>注意：elasticsearch的版本和ik分词器的版本需要保持一致，不然在重启时会失败。可以在这查看所有版本，选择适合自己版本的右键复制链接地址即可。点击这里[<a href="https://github.com/medcl/elasticsearch-analysis-ik/releases]" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases]</a></p>
+<p>注意：elasticsearch的版本和ik分词器的版本需要保持一致，不然在重启时会失败。可以在这查看所有版本，选择适合自己版本的右键复制链接地址即可。<a href="https://github.com/medcl/elasticsearch-analysis-ik/releases" target="_blank" rel="noopener">点击这里</a></p>
 <h3 id="3、用Docker安装kibana"><a href="#3、用Docker安装kibana" class="headerlink" title="3、用Docker安装kibana"></a>3、用Docker安装kibana</h3><p>安装kibana</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">docker pull kibana</span><br></pre></td></tr></table></figure>
 <p>启动kibana</p>
@@ -82,8 +98,8 @@
 
 ]]></content>
       <tags>
-        <tag>MVVM</tag>
         <tag>Vue</tag>
+        <tag>MVVM</tag>
       </tags>
   </entry>
   <entry>
