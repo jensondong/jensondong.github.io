@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Java基础知识点</title>
+    <url>/2020/04/07/summary/</url>
+    <content><![CDATA[<h5 id="1、Java面向对象编程的三大特性："><a href="#1、Java面向对象编程的三大特性：" class="headerlink" title="1、Java面向对象编程的三大特性："></a>1、Java面向对象编程的三大特性：</h5><p>封装、继承、多态<br>注意：继承时父类中的私有属性和方法，子类无法访问，只是拥有。</p>
+<a id="more"></a>
+<h5 id="2、String、StringBuffer和StringBuilder的区别是什么？"><a href="#2、String、StringBuffer和StringBuilder的区别是什么？" class="headerlink" title="2、String、StringBuffer和StringBuilder的区别是什么？"></a>2、String、StringBuffer和StringBuilder的区别是什么？</h5><h6 id="可变性"><a href="#可变性" class="headerlink" title="可变性"></a>可变性</h6><p>String类中使用final关键字修饰字符数组来保存字符串，所以String对象是不可变的。<br>StringBuffer和StringBuilder都继承自AbstactStringBuilder类，也是使用字符数组保存字符串，但是没有用final关键字修饰，所以这两种对象是可变的。</p>
+<h6 id="线程安全性"><a href="#线程安全性" class="headerlink" title="线程安全性"></a>线程安全性</h6><p>String中的对象是不可变的，可以理解为常量，线程安全。StringBuffer对方法加了同步锁或者对调用的方法加了同步锁，所以是线程安全的。StringBuilder并没有对方法进行加同步锁，所以是非线程安全的。</p>
+<h6 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h6><p>每次对String类型进行改变时，都会生成一个新的String对象，然后将指针指向新的String对象。StringBuffer每次都会对StringBuffer对象本身进行操作，而不是生成新的对象并改变对象引用。相同情况下使用StringBuilder相比使用StringBuffer仅能获得10%~15%左右的性能提升，但要冒多线程不安全的风险。</p>
+<h5 id="3、在一个静态方法内调用一个非静态成愿为什么是非法的？"><a href="#3、在一个静态方法内调用一个非静态成愿为什么是非法的？" class="headerlink" title="3、在一个静态方法内调用一个非静态成愿为什么是非法的？"></a>3、在一个静态方法内调用一个非静态成愿为什么是非法的？</h5><p>由于静态方法可以不通过对象进行调用，因此在静态方法里，不能调用其他非静态变量，也不可以访问非静态变量成员。</p>
+<h5 id="4、接口与抽象类的区别？"><a href="#4、接口与抽象类的区别？" class="headerlink" title="4、接口与抽象类的区别？"></a>4、接口与抽象类的区别？</h5><p>接口的方法默认是public（Java9开始允许定义私有方法），所有方法在接口中不能有实现（Java8开始接口方法可以有默认实现），而抽象类可以有非抽象的方法。<br>接口中除了static、final变量，不能有其他变量，而抽象类中则不一定。<br>一个类可以实现多个接口，但只能实现一个抽象类。接口自己本身可以通过extends关键字扩展多个接口。</p>
+<h5 id="5、-与equals"><a href="#5、-与equals" class="headerlink" title="5、==与equals"></a>5、==与equals</h5><p>==：基本数据类型比较的是值，引用数据类型比较的是内存地址。<br>equals()：(1)类没有覆盖equals()方法。则比较的是内存地址。(2)类覆盖了equals()方法，比较的是内容是否相等，<br>注意：String中的equals方法是被重写过的，比较的是对象的值。当创建String类型的对象时，虚拟机会在常量池中查找有没有已经存在的值和要创建的值相同的对象，如果有就把它赋给当前引用。如果没有就在常量池中重新创建一个String对象。</p>
+<h2 id="未完待续。。。"><a href="#未完待续。。。" class="headerlink" title="未完待续。。。"></a>未完待续。。。</h2>]]></content>
+      <tags>
+        <tag>Java基础</tag>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Spring MVC回顾</title>
     <url>/2020/04/07/note5/</url>
     <content><![CDATA[<p>Spring框架提供了构建Web应用程序的全功能MVC模块–Spring MVC。Spring MVC框架提供了一个DispatcherServlet作用前端控制器来分派请求，同时提供灵活的配置处理程序映射、视图解析、语言环境和主题解析，并支持文件上传。Spring MVC还包含多种视图技术。Spring MVC分离了控制器、模型对象、分派器以及处理程序对象的角色，这种分离让它们更容易进行定制。<a id="more"></a></p>
