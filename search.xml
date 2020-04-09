@@ -96,25 +96,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vue中的数据双向绑定</title>
-    <url>/2020/04/06/note4/</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>什么是双向数据绑定？<br>当数据发生变化时，视图也会随之发生变化，当视图发生变化时，数据也会随着视图同步变化。数据双向绑定时对于UI控件来说的，非UI控件不会涉及到数据双向绑定。</p>
-<a id="more"></a>
-<p>全局性数据流使用单向，方便跟踪；局部性数据流使用双向，简单易操作。</p>
-<h2 id="实现数据双向绑定"><a href="#实现数据双向绑定" class="headerlink" title="实现数据双向绑定"></a>实现数据双向绑定</h2><p>Vue提供了v-model指令实现数据双向绑定功能</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./lib/vue-2.4.0.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--v-bind只能实现数据的单项绑定，从M自动绑定到V，无法实现数据的双向绑定--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    &lt;input type="text" v-bind:value="msg" style="width:100%"&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">style</span>=<span class="string">"width:100%"</span> <span class="attr">v-model</span>=<span class="string">"msg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//创建Vue实例，得到ViewModel</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> vm=<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            msg: <span class="string">'helloworld'</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>需要注意的是，v-model只能应用在表单元素中</p>
-]]></content>
-      <categories>
-        <category>Web前端</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>mvvm</tag>
-        <tag>数据绑定</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Spring MVC回顾</title>
     <url>/2020/04/07/note5/</url>
     <content><![CDATA[<p>Spring框架提供了构建Web应用程序的全功能MVC模块–Spring MVC。Spring MVC框架提供了一个DispatcherServlet作用前端控制器来分派请求，同时提供灵活的配置处理程序映射、视图解析、语言环境和主题解析，并支持文件上传。Spring MVC还包含多种视图技术。Spring MVC分离了控制器、模型对象、分派器以及处理程序对象的角色，这种分离让它们更容易进行定制。<a id="more"></a></p>
@@ -173,6 +154,25 @@
       <tags>
         <tag>Java基础</tag>
         <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue中的数据双向绑定</title>
+    <url>/2020/04/06/note4/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>什么是双向数据绑定？<br>当数据发生变化时，视图也会随之发生变化，当视图发生变化时，数据也会随着视图同步变化。数据双向绑定时对于UI控件来说的，非UI控件不会涉及到数据双向绑定。</p>
+<a id="more"></a>
+<p>全局性数据流使用单向，方便跟踪；局部性数据流使用双向，简单易操作。</p>
+<h2 id="实现数据双向绑定"><a href="#实现数据双向绑定" class="headerlink" title="实现数据双向绑定"></a>实现数据双向绑定</h2><p>Vue提供了v-model指令实现数据双向绑定功能</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"./lib/vue-2.4.0.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h4</span>&gt;</span>&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--v-bind只能实现数据的单项绑定，从M自动绑定到V，无法实现数据的双向绑定--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    &lt;input type="text" v-bind:value="msg" style="width:100%"&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">style</span>=<span class="string">"width:100%"</span> <span class="attr">v-model</span>=<span class="string">"msg"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//创建Vue实例，得到ViewModel</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> vm=<span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            msg: <span class="string">'helloworld'</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        methods: &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是，v-model只能应用在表单元素中</p>
+]]></content>
+      <categories>
+        <category>Web前端</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>mvvm</tag>
+        <tag>数据绑定</tag>
       </tags>
   </entry>
 </search>
